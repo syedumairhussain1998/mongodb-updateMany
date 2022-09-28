@@ -18,3 +18,20 @@ const list = async (request,response) =>{
     response.json({data})
 }
 module.exports = { list }
+
+
+
+===================
+
+// if the email exists then upate else insert (upsert)
+
+const User = require("../models/User");
+const list = async (request, response) => {
+  const data = await User.updateMany(
+    { email: "test3000" },
+    { $set: { email: "test4000" } },
+    { upsert: true }
+  );
+  response.json({ data });
+};
+module.exports = { list };
